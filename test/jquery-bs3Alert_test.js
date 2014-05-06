@@ -33,4 +33,43 @@
     strictEqual(this.elems.bs3Alert(), this.elems, 'should be chainable');
   });
 
+  asyncTest('produces a default alert', function() {
+    expect(6);
+    this.elems.bs3Alert();
+    $(document).trigger('show-alert', {message: 'hi there'});
+    var base = this;
+    setTimeout(function() {
+      start();
+      var alerts = $('DIV.alert'),
+          firstAlert = alerts.first(),
+          button = firstAlert.find('button'),
+          title = firstAlert.find('strong').text(),
+          html = firstAlert.html();
+      strictEqual( alerts.length, base.elems.length, "There should be one alert for each element" );
+      strictEqual( button.length, 1, 'expetced a close button');
+      equal( title, 'Error', 'expetced the title to be "Error"');      
+      ok( html.indexOf('hi there') > 0, 'expetced the text to contain "hi there"');
+      ok( firstAlert.hasClass('alert-danger'), 'Expected the alert to have class "alert-danger"');
+      ok( firstAlert.hasClass('alert-dismissable'), 'Expected the alert to have class "alert-dismissable"');
+    }, 50);
+  });
+
+  asyncTest('produces a customised alert', function() {
+    expect(5);
+    this.elems.bs3Alert({dismissable: false});
+    $(document).trigger('show-alert', {priority: 'warning', message: 'yo, way to go'});
+    setTimeout(function() {
+      var firstAlert = $('DIV.alert').first(),
+          button = firstAlert.find('button'),
+          title = firstAlert.find('strong').text(),
+          html = firstAlert.html();
+      strictEqual( button.length, 0, 'expetced no close button');
+      equal( title, 'Warning', 'expetced the title to be "Warning"');      
+      ok( html.indexOf('yo, way to go') > 0, 'expetced the text to contain "yo, way to go"');
+      ok( firstAlert.hasClass('alert-warning'), 'Expected the alert to have class "alert-warning"');
+      ok( !firstAlert.hasClass('alert-dismissable'), 'Expected the alert not to have class "alert-dismissable"');
+      start();
+    }, 50);
+  });
+
 }(jQuery));
