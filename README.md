@@ -54,7 +54,8 @@ $(document).ready(function(){
 })
 ```
 
-* `dismissable` : if true the alert will contain a close button.
+* `dismissable` :if true the alert will contain a close button.
+* `fade`: if true the alert will fade out when closed.
 * `priority`: the default priority.  One of 'success', 'info', 'warning', or 'danger'.
 * `titles` : the text to display for any given priority.
 
