@@ -1,8 +1,12 @@
 /*! jQuery BS3Alert Plugin - v0.1.0 - 2014-05-06
 * https://github.com/davesag/jquery-bs3Alert
 * Copyright (c) 2014 davesag; Licensed MIT */
-if (typeof jQuery === 'undefined') {
+if (typeof jQuery !== 'function') {
   throw 'Expected jQuery to have been loaded before this script.';
+}
+
+if ((typeof jQuery().alert !== 'function')) {
+  throw 'Expected Bootstrap (ideally Version 3) to have been loaded before this script.';
 }
 
 (function($, undefined) {
@@ -28,14 +32,14 @@ if (typeof jQuery === 'undefined') {
   };
 
   function buildAlert(options) {
-    var aClass = 'alert alert-' + options.priority + 
+    var aClass = 'fade in alert alert-' + options.priority + 
                   (options.dismissable ? ' alert-dismissable' : ''),
         $wrapper = $('<div/>', {'class': aClass}),
         title = options.titles[options.priority];
     if (options.dismissable) {
       $wrapper.append('<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>');
     }
-    $wrapper.append('<strong>' + title + '</strong> ' + options.message);
+    $wrapper.append('<strong>' + title + '</strong> ' + options.message).alert();
    return $wrapper;
   }
 
