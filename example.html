@@ -29,9 +29,9 @@
         <div class="my-alert-container"></div>
       </div>
     </div>
-    <div class="row">
+    <div id="proof-of-close" class="row">
       <div class="col-xs-12">
-        <h2>It's a standard Bootstrap 3 Alert</h2>
+        <h3>It's a standard Bootstrap 3 Alert</h3>
         <p>Which means you can bind alert close events just like normal,
            but with the advantage that the alert can be easily re-opened.
            This makes it excellent for displaying errors on web pages that
@@ -41,10 +41,15 @@
   </div>
   <script>
   $(document).ready(function(){
+    $("#proof-of-close").hide();
     $(".my-alert-container").bs3Alert();
+    $('.my-alert-container').bind('closed.bs.alert', function () {
+      $("#proof-of-close").show();
+    })
     $("#click-me").click(function(evt){
       evt.preventDefault();
-      $(document).trigger('show-alert', {message: 'Why heloo there!'});
+      $("#proof-of-close").hide();
+      $(document).trigger('show-alert', {message: 'Why hello there!'});
     });
   });
   </script>
