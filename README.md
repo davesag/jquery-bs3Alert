@@ -39,7 +39,8 @@ You can pass in options when you create it as follows:
 $(document).ready(function(){
   $("#my-alert-goes-here").bs3Alert({
     dismissable: true,
-    priority: 'danger',
+    fade:        true,
+    priority:    'danger',
     titles: {
       success: 'Success',
       info:    'Information',
@@ -74,9 +75,8 @@ but with the advantage that the alert can be easily re-opened.
 This makes it excellent for displaying errors on web pages that
 are the result of ajax calls.
 
-
-
 ## Release History
 
 1. First Commit - The basic framework is up, including gruntfile, and quint tests.
 2. It Works - The core plugin works
+3. Enhanced tests and added fade - You can now fade the alert as it closes.

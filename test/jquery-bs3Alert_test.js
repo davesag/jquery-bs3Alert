@@ -34,7 +34,7 @@
   });
 
   asyncTest('produces a default alert', function() {
-    expect(6);
+    expect(8);
     this.elems.bs3Alert();
     $(document).trigger('show-alert', {message: 'hi there'});
     var base = this;
@@ -50,12 +50,14 @@
       equal( title, 'Error', 'expetced the title to be "Error"');      
       ok( html.indexOf('hi there') > 0, 'expetced the text to contain "hi there"');
       ok( firstAlert.hasClass('alert-danger'), 'Expected the alert to have class "alert-danger"');
+      ok( firstAlert.hasClass('fade'), 'Expected the alert to have class "fade"');
+      ok( firstAlert.hasClass('in'), 'Expected the alert to have class "in"');
       ok( firstAlert.hasClass('alert-dismissable'), 'Expected the alert to have class "alert-dismissable"');
     }, 50);
   });
 
-  asyncTest('produces a customised alert', function() {
-    expect(5);
+  asyncTest('produces a non-dismissible alert', function() {
+    expect(7);
     this.elems.bs3Alert({dismissable: false});
     $(document).trigger('show-alert', {priority: 'warning', message: 'yo, way to go'});
     setTimeout(function() {
@@ -68,6 +70,28 @@
       ok( html.indexOf('yo, way to go') > 0, 'expetced the text to contain "yo, way to go"');
       ok( firstAlert.hasClass('alert-warning'), 'Expected the alert to have class "alert-warning"');
       ok( !firstAlert.hasClass('alert-dismissable'), 'Expected the alert not to have class "alert-dismissable"');
+      ok( !firstAlert.hasClass('fade'), 'Expected the alert not to have class "fade"');
+      ok( !firstAlert.hasClass('fade'), 'Expected the alert not to have class "in"');
+      start();
+    }, 50);
+  });
+
+  asyncTest('produces a customised alert', function() {
+    expect(7);
+    this.elems.bs3Alert({fade: false, priority: 'success'});
+    $(document).trigger('show-alert', {message: 'yo, way to go'});
+    setTimeout(function() {
+      var firstAlert = $('DIV.alert').first(),
+          button = firstAlert.find('button'),
+          title = firstAlert.find('strong').text(),
+          html = firstAlert.html();
+      strictEqual( button.length, 1, 'expetced a close button');
+      equal( title, 'Success', 'expetced the title to be "Success"');      
+      ok( html.indexOf('yo, way to go') > 0, 'expetced the text to contain "yo, way to go"');
+      ok( firstAlert.hasClass('alert-success'), 'Expected the alert to have class "alert-success"');
+      ok( firstAlert.hasClass('alert-dismissable'), 'Expected the alert to have class "alert-dismissable"');
+      ok( !firstAlert.hasClass('fade'), 'Expected the alert not to have class "fade"');
+      ok( !firstAlert.hasClass('fade'), 'Expected the alert not to have class "in"');
       start();
     }, 50);
   });

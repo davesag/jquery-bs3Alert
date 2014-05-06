@@ -32,8 +32,9 @@ if ((typeof jQuery().alert !== 'function')) {
   };
 
   function buildAlert(options) {
-    var aClass = 'fade in alert alert-' + options.priority + 
-                  (options.dismissable ? ' alert-dismissable' : ''),
+    var aClass = 'alert alert-' + options.priority + 
+                  (options.dismissable ? ' alert-dismissable' : '') +
+                  (options.dismissable && options.fade ? ' fade in' : ''),
         $wrapper = $('<div/>', {'class': aClass}),
         title = options.titles[options.priority];
     if (options.dismissable) {
@@ -46,6 +47,7 @@ if ((typeof jQuery().alert !== 'function')) {
   // Default options.
   $.fn.bs3Alert.options = {
     dismissable: true,
+    fade: true,
     priority: 'danger',
     titles: {
       success: 'Success',
