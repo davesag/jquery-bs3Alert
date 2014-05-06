@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Bs3Alert Test Suite</title>
+  <!-- Load local jQuery. This can be overridden with a ?jquery=___ param. -->
+  <script src="libs/jquery/jquery.js"></script>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css" media="screen">
+  <script src="libs/bootstrap/js/bootstrap.min.js"></script>
+  <!-- Load local lib . -->
+  <script src="dist/jquery-bs3Alert.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h2>A Very simple test of the bs3Alert jQuery Plugin</h2>
+        <p>Click on the button below and be amazed as the alert appears.
+           Then click on the alert's close box and tremble as it vanishes.
+           Then click on the button again and gaze on in wonder as the alear reappears.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">
+        <button id="click-me" class="btn btn-success">See it work</button>
+      </div>
+      <div class="col-xs-9">
+        <div class="my-alert-container"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <h2>It's a standard Bootstrap 3 Alert</h2>
+        <p>Which means you can bind alert close events just like normal,
+           but with the advantage that the alert can be easily re-opened.
+           This makes it excellent for displaying errors on web pages that
+           are the result of ajax calls.</p>
+       </div>
+    </div>
+  </div>
+  <script>
+  $(document).ready(function(){
+    $(".my-alert-container").bs3Alert();
+    $("#click-me").click(function(evt){
+      evt.preventDefault();
+      $(document).trigger('show-alert', {message: 'Why heloo there!'});
+    });
+  });
+  </script>
+</body>
+</html>

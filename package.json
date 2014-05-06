@@ -1,9 +1,9 @@
 {
-  "name": "jquery-bs3Alert",
-  "title": "BS3Alert",
+  "name": "bs3Alert",
+  "title": "jQuery BS3Alert Plugin",
   "description": "A simple jQuery Plugin to show repeatable Bootstrap 3 Alerts",
   "version": "0.1.0",
-  "main": "jquery.bs3Alert.js",
+  "main": "jquery-bs3Alert.js",
   "homepage": "https://github.com/davesag/jquery-bs3Alert",
   "author": {
     "name": "davesag",
@@ -22,7 +22,7 @@
     }
   ],
   "dependencies": {
-    "jquery": "2.1.1"
+    "jquery": "^2.1.0"
   },
   "devDependencies": {
     "grunt": "~0.4.4",
