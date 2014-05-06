@@ -1,6 +1,6 @@
-/*! jQuery BS3Alert Plugin - v0.1.0 - 2014-05-06
+/*! jQuery BS3Alert Plugin - v1.0.0 - 2014-05-06
 * https://github.com/davesag/jquery-bs3Alert
-* Copyright (c) 2014 davesag; Licensed MIT */
+* Copyright (c) 2014 Dave Sag; Licensed MIT */
 if (typeof jQuery !== 'function') {
   throw 'Expected jQuery to have been loaded before this script.';
 }
